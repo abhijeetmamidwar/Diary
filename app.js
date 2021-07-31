@@ -94,3 +94,15 @@ app.post("/register", function (req, res) {
     username: username,
     interestRate: 1.1,
   });
+
+  Account.register(newAccount, password, function (err, createdAccount) {
+    if (err) {
+      console.log(err);
+      res.redirect("/");
+    } else {
+      currentAccount = createdAccount;
+      passport.authenticate("local")(req, res, function () {
+        res.render("combo.ejs", { acc: currentAccount });
+      });
+    }
+  });
