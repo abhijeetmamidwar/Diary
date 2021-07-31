@@ -73,3 +73,24 @@ setInterval(function () {
 }, 8.64e7);
 
 //////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////
+///      ROUTES
+//////////////////////////
+
+var currentAccount;
+
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.post("/register", function (req, res) {
+  const fullname = req.body.registerfullname;
+  const username = req.body.username;
+  const password = req.body.password;
+
+  var newAccount = new Account({
+    owner: fullname,
+    username: username,
+    interestRate: 1.1,
+  });
