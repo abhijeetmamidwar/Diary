@@ -28,3 +28,48 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.use(new localStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
+mongoose.connect("mongodb://localhost:27017/diaryDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+//////////////////////////////////////////////////////////////////////////////
+
+const monthly = function (acc) {
+  const year =
+    new Date().getMonth() + 1 == 1
+      ? new Date().getFullYear() - 1
+      : new Date().getFullYear();
+
+  const moves = acc.movements.filter((mov) => {
+    return new Date(mov.date).getMonth() + 1 == new Date().getMonth();
+  });
+
+  if (moves.length != 0) {
+    acc.monthlyMovements.push({
+      date: moves,
+      monthAndYear: `${new Date().getMonth()}/${year}`,
+    });
+
+    moves.forEach((mov) => {
+      const I = acc.movements.indexOf(mov);
+      acc.movements.splice(I, 1);
+    });
+  }
+  acc.save();
+};
+
+setInterval(function () {
+  if (new Date().getDate() == 1) {
+    Account.find({}, function (allFunctions) {
+      allFunctions.map((acc) => monthly(acc));
+    });
+  }
+}, 8.64e7);
+
+//////////////////////////////////////////////////////////////////////////////
