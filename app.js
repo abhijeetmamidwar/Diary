@@ -106,3 +106,46 @@ app.post("/register", function (req, res) {
       });
     }
   });
+
+  //// Normal Create model in MongoDB DataBase
+  // Account.create(
+  //   { owner: fullname, username: username, password: password },
+  //   function (err, createdAccount) {
+  //     if (!err) {
+  //       currentAccount = createdAccount;
+  //       console.log(currentAccount);
+  //       res.render("combo.ejs", { acc: currentAccount });
+  //     } else {
+  //       console.log(err);
+  //     }
+  //   }
+  // );
+});
+
+app.post("/login", function (req, res) {
+  const data = new Account({
+    username: req.body.username,
+    password: req.body.password,
+  });
+
+  req.login(data, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      passport.authenticate("local")(req, res, function () {
+        currentAccount = req.user;
+        res.render("combo.ejs", { acc: currentAccount });
+      });
+    }
+  });
+
+  //// Normal logging In model in MongoDB DataBase
+  // Account.findOne({ username: username }, function (err, foundAccount) {
+  //   if (!err && foundAccount != {}) {
+  //     currentAccount = foundAccount;
+  //     res.render("combo.ejs", { acc: currentAccount });
+  //   } else {
+  //     console.log(err);
+  //   }
+  // });
+});
