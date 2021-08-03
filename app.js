@@ -149,3 +149,53 @@ app.post("/login", function (req, res) {
   //   }
   // });
 });
+
+app.post("/movement", function (req, res) {
+  const amount = Number(req.body.inputTransferAmount);
+
+  if (amount > 0 && currentAccount.balance >= amount) {
+    // Updating Movements
+    activity.movements(currentAccount, -amount);
+
+    // Updating balance
+    activity.balance(currentAccount);
+
+    // Updating Summary
+    activity.summary(currentAccount);
+  }
+
+  let receiverAccount;
+
+  Account.findOne(
+    { username: req.body.inputTransferTo },
+    function (err, foundAccount) {
+      if (!err) {
+        receiverAccount = foundAccount;
+      } else {
+        console.log(err);
+      }
+    }
+  );
+
+  if (
+    receiverAccount &&
+    receiverAccount?.username !== currentAccount.username
+  ) {
+    // Updating Movements
+    activity.movements(receiverAccount, amount);
+
+    // Updating balance
+    activity.balance(receiverAccount);
+
+    // Updating Summary
+    activity.summary(receiverAccount);
+
+    // Save for receiverAccount
+    receiverAccount.save();
+    receiverAccount = null;
+  }
+
+  currentAccount.save();
+
+  res.render("combo.ejs", { acc: currentAccount });
+});
