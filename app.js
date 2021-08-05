@@ -199,3 +199,25 @@ app.post("/movement", function (req, res) {
 
   res.render("combo.ejs", { acc: currentAccount });
 });
+
+app.post("/loan", function (req, res) {
+  const amount = Number(req.body.inputLoanAmount);
+  const loanFrom = req.body.inputLoanFrom;
+
+  // Updating Movements
+  activity.movements(currentAccount, amount);
+
+  // Updating Summary
+  activity.summary(currentAccount);
+
+  // Updating balance
+  activity.balance(currentAccount);
+
+  // Updating Loan
+  if (!loanFrom.toLowerCase().includes("bank")) {
+    activity.loan(currentAccount, loanFrom, amount);
+  }
+
+  currentAccount.save();
+  res.render("combo.ejs", { acc: currentAccount });
+});
