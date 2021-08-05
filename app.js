@@ -237,3 +237,13 @@ app.post("/close", function (req, res) {
     }
   );
 });
+
+app.get("/logout", function (req, res) {
+  req.logOut();
+  res.redirect("/");
+});
+
+////////////////////////// Listening Server //////////////////////////
+app.listen(process.env.PORT || 3000, function (req, res) {
+  console.log("Server started on port 3000");
+});
