@@ -221,3 +221,19 @@ app.post("/loan", function (req, res) {
   currentAccount.save();
   res.render("combo.ejs", { acc: currentAccount });
 });
+
+app.post("/close", function (req, res) {
+  const username = req.body.closeAccountUsername;
+  const password = Number(req.body.closeAccountPassword);
+
+  Account.deleteOne(
+    { username: username, password: password },
+    function (err, deletedAccount) {
+      if (!err) {
+        res.sendFile(__dirname + "/index.html");
+      } else {
+        console.log("Cant delete Account");
+      }
+    }
+  );
+});
