@@ -104,10 +104,48 @@
         </form>
       </div>
 
-      
+      <!-- OPERATION: LOAN -->
+      <div class="operation operation--loan">
+        <h2>Request loan</h2>
+        <form class="form form--loan">
+          <input
+            type="number"
+            class="form__input form__input--loan-amount"
+            name="inputLoanAmount"
+          />
+          <button class="form__btn form__btn--loan" name="btnLoan">
+            &rarr;
+          </button>
+          <label class="form__label form__label--loan">Amount</label>
+        </form>
+      </div>
 
+      <!-- OPERATION: CLOSE -->
+      <div class="operation operation--close">
+        <h2>Close account</h2>
+        <form class="form form--close">
+          <input
+            type="text"
+            class="form__input form__input--user"
+            name="inputCloseUsername"
+          />
+          <input
+            type="password"
+            maxlength="6"
+            class="form__input form__input--pin"
+            name="inputClosePin"
+          />
+          <button class="form__btn form__btn--close" name="btnClose">
+            &rarr;
+          </button>
+          <label class="form__label">Confirm user</label>
+          <label class="form__label">Confirm PIN</label>
+        </form>
+      </div>
 
     </main>
+
+    <script src="script.js"></script>
 
   </body>
 </html>
