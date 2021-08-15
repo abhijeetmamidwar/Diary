@@ -1,0 +1,16 @@
+<% const curr__options = { style: "currency", currency: "INR" } %> <% const
+date__option = { day: "numeric", month: "numeric", year: "numeric", }; %><%
+movements = acc.movements %> <% acc.balance = acc.movements.reduce((acc, obj) =>
+acc + obj.amount, 0) %> <% var balance = new Intl.NumberFormat("hi-IN",
+curr__options).format(acc.balance); %> <% const displayTodayDate = new
+Intl.DateTimeFormat("en-GB", date__option).format(new Date()); %>
+
+<div class="balance">
+  <div>
+    <p class="balance__label">Current balance</p>
+    <p class="balance__date">
+      As of <span class="date"><%= displayTodayDate %></span>
+    </p>
+  </div>
+  <p class="balance__value"><%= balance %></p>
+</div>
