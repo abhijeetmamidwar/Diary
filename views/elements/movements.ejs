@@ -1,0 +1,19 @@
+<% const curr__options = { style: "currency", currency: "INR" } %> <% const
+date__option = { day: "numeric", month: "numeric", year: "numeric" }; %>
+
+<div class="movements">
+  <% acc.movements.reverse().forEach(function(mov,i){ %> <% const type =
+  mov.amount > 0 ? "deposit" : "withdrawal" %> <% var currency = new
+  Intl.NumberFormat("hi-IN", curr__options).format(mov.amount); %> <% const
+  displayDate = new Intl.DateTimeFormat("en-GB", date__option).format(new
+  Date(mov.date)); %>
+
+  <div class="movements__row">
+    <div class="movements__type movements__type--<%=type%>">
+      <%= acc.movements.length - i %><%= type %>
+    </div>
+    <div class="movements__date"><%= displayDate %></div>
+    <div class="movements__value"><%= currency %></div>
+  </div>
+  <% }); %><%acc.movements.reverse() %>
+</div>
