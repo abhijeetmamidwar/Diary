@@ -1,0 +1,20 @@
+<div class="operation operation--transfer">
+  <h2>Expenditure</h2>
+  <form class="form form--transfer" action="/movement" method="POST">
+    <input
+      type="text"
+      class="form__input form__input--to"
+      name="inputTransferTo"
+    />
+    <input
+      type="number"
+      class="form__input form__input--amount"
+      name="inputTransferAmount"
+    />
+    <button class="form__btn form__btn--transfer" name="btnTransfer">
+      &rarr;
+    </button>
+    <label class="form__label">In</label>
+    <label class="form__label">Amount</label>
+  </form>
+</div>
