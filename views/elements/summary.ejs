@@ -1,0 +1,23 @@
+<% const curr__options = { style: "currency", currency: "INR" }; %> <% var
+movements = [] %> <% acc.movements.forEach(function(mov){
+movements.push(mov.amount)}) %> <% const incomes =
+movements.filter(function(mov){ return(mov > 0)}) .reduce(function(acc,mov){
+return(acc + mov) }, 0) %> <%const income = new Intl.NumberFormat("hi-IN",
+curr__options).format(incomes); %> <% const outs = movements
+.filter(function(mov){ return(mov < 0)}).reduce(function(acc,mov) {return(acc +
+mov) }, 0) %> <%const out = new Intl.NumberFormat("hi-IN",
+curr__options).format(outs); %> <% const interests = movements
+.filter(function(mov){ return(mov > 0)}) .map(function(deposit){ return(deposit
+* acc.interestRate / 100)}).filter(function(int,i,arr){return(int >= 1)})
+.reduce(function(acc,int){return(acc + int)},0) %> <%const interest = new
+Intl.NumberFormat("hi-IN", curr__options).format(interests); %>
+
+<div class="summary">
+  <p class="summary__label">In</p>
+  <p class="summary__value summary__value--in"><%= income %></p>
+  <p class="summary__label">Out</p>
+  <p class="summary__value summary__value--out"><%= out %></p>
+  <p class="summary__label">Interest</p>
+  <p class="summary__value summary__value--interest"><%= interest %></p>
+  <button class="btn--sort">&downarrow; SORT</button>
+</div>
