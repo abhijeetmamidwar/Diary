@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
@@ -21,7 +22,7 @@ app.use("/public", express.static("public"));
 
 app.use(
   expressSession({
-    secret: "ThisprojectisjustforpracticeofnodeexpressandmongoDB",
+    secret: `${process.env.SECRET}`,
     resave: false,
     saveUninitialized: false,
   })
@@ -33,10 +34,19 @@ passport.use(new localStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
-mongoose.connect("mongodb://localhost:27017/diaryDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect("mongodb://localhost:27017/diaryDB", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+mongoose.connect(
+  `mongodb+srv://Admin-${process.env.DB_OWNER}:${process.env.DB_PASSWORD}@cluster0.u1idj.mongodb.net/diaryDB`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+mongoose.set("useFindAndModify", false);
 
 //////////////////////////////////////////////////////////////////////////////
 
