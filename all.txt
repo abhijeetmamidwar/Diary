@@ -1,0 +1,218 @@
+const account1 = {
+  owner: "Abhijeet Mamidwar",
+
+  // movements: [
+  //   { amount: 200, date: "2019-11-18T21:31:17.178Z" },
+  //   { amount: 450, date: "2019-11-18T21:31:17.178Z" },
+  //   { amount: -400, date: "2019-11-18T21:31:17.178Z" },
+  //   { amount: 3000, date: "2019-11-18T21:31:17.178Z" },
+  //   { amount: -650, date: "2019-11-18T21:31:17.178Z" },
+  //   { amount: -130, date: "2019-11-18T21:31:17.178Z" },
+  //   { amount: 70, date: "2019-11-18T21:31:17.178Z" },
+  //   { amount: 1300, date: "2019-11-18T21:31:17.178Z" },
+  // ],////
+  movements: [
+    {
+      amount: 200,
+      date: "2021-06-01T20:23:15.971",
+    },
+    {
+      amount: 450,
+      date: "2021-05-31T20:23:15.971",
+    },
+    {
+      amount: -400,
+      date: "2021-05-31T20:23:15.971",
+    },
+    {
+      amount: -650,
+      date: "2021-05-31T20:23:15.971",
+    },
+    {
+      amount: 3000,
+      date: "2021-05-31T20:23:15.971",
+    },
+    {
+      amount: -650,
+      date: "2021-05-29T20:23:15.971",
+    },
+    {
+      amount: -130,
+      date: "2021-05-29T20:23:15.971",
+    },
+    {
+      amount: 70,
+      date: "2021-05-29T20:23:15.971",
+    },
+    {
+      amount: 1300,
+      date: "2021-05-29T20:23:15.971",
+    },
+  ],
+
+  monthlyMovements: [],
+
+  loans: [],
+
+  interestRate: 1.2, // %
+  balance: 10000,
+  username: "am",
+  pin: 1111,
+
+  summary: { income: 0, expenditure: 0, interest: 0 },
+};
+const account2 = {
+  owner: "Tom Gerry",
+
+  movements: [
+    { amount: 5000, date: "2019-11-18T21:31:17.178Z" },
+    { amount: 3400, date: "2018-11-17T21:31:17.178Z" },
+    { amount: -150, date: "2019-11-18T21:31:17.178Z" },
+    { amount: -790, date: "2019-11-18T21:31:17.178Z" },
+    { amount: -3210, date: "2019-11-18T21:31:17.178Z" },
+    { amount: -1000, date: "2019-11-18T21:31:17.178Z" },
+    { amount: 8500, date: "2019-11-18T21:31:17.178Z" },
+    { amount: -30, date: "2019-11-18T21:31:17.178Z" },
+  ],
+
+  monthlyMovements: [],
+
+  loans: [],
+
+  interestRate: 1.5,
+  balance: 15000,
+  username: "tg",
+  pin: 2222,
+
+  summary: { income: 0, expenditure: 0, interest: 0 },
+};
+var accounts = [account1, account2];
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+// const account = new Account({
+//   owner: "Tom Gerry",
+//   password: 2222,
+//   username: "tg",
+
+//   movements: [
+//     {
+//       amount: 5000,
+//       date: "2021-06-01T20:23:15.971",
+//     },
+//   ],
+
+//   monthlyMovements: [
+//     {
+//       date: [
+//         {
+//           amount: 3400,
+//           date: "2021-05-31T20:23:15.971",
+//         },
+//         {
+//           amount: -150,
+//           date: "2021-05-31T20:23:15.971",
+//         },
+//         {
+//           amount: -790,
+//           date: "2021-05-31T20:23:15.971",
+//         },
+//         {
+//           amount: -3210,
+//           date: "2021-05-31T20:23:15.971",
+//         },
+//         {
+//           amount: -1000,
+//           date: "2021-05-29T20:23:15.971",
+//         },
+//         {
+//           amount: 8500,
+//           date: "2021-05-29T20:23:15.971",
+//         },
+//         {
+//           amount: -30,
+//           date: "2021-05-29T20:23:15.971",
+//         },
+//       ],
+//       monthAndYear: "5/2021",
+//     },
+//   ],
+
+//   loans: [],
+
+//   interestRate: 1.5,
+//   balance: 5000,
+//   summary: {
+//     income: 5000,
+//     expenditure: 0,
+//     interest: 0,
+//   },
+// });
+
+// const account = new Account({
+//   owner: "Abhijeet Mamidwar",
+//   password: 1111,
+//   username: "am",
+
+//   movements: [
+//     {
+//       amount: 200,
+//       date: "2021-06-01T20:23:15.971",
+//     },
+//   ],
+
+//   monthlyMovements: [
+//     {
+//       date: [
+//         {
+//           amount: 450,
+//           date: "2021-05-31T20:23:15.971",
+//         },
+//         {
+//           amount: -400,
+//           date: "2021-05-31T20:23:15.971",
+//         },
+//         {
+//           amount: -650,
+//           date: "2021-05-31T20:23:15.971",
+//         },
+//         {
+//           amount: 3000,
+//           date: "2021-05-31T20:23:15.971",
+//         },
+//         {
+//           amount: -650,
+//           date: "2021-05-29T20:23:15.971",
+//         },
+//         {
+//           amount: -130,
+//           date: "2021-05-29T20:23:15.971",
+//         },
+//         {
+//           amount: 70,
+//           date: "2021-05-29T20:23:15.971",
+//         },
+//         {
+//           amount: 1300,
+//           date: "2021-05-29T20:23:15.971",
+//         },
+//       ],
+//       monthAndYear: "5/2021",
+//     },
+//   ],
+
+//   loans: [],
+
+//   interestRate: 1.2,
+//   balance: 200,
+//   summary: {
+//     income: 200,
+//     expenditure: 0,
+//     interest: 0,
+//   },
+// });
+
+// account.save();
