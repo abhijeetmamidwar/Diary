@@ -179,6 +179,12 @@ h1 {
   line-height: 1.35;
 }
 
+h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
 h4 {
   font-size: 2.4rem;
   font-weight: 500;
@@ -434,6 +440,12 @@ a {
   grid-column: 1 / span 2;
   justify-self: center;
   margin-top: 1rem;
+}
+
+label img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
 }
 
 .btn--close-modal {
